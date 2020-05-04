@@ -10,9 +10,9 @@ In the button package -
   
 In the characters package -
   
-	MainCharacter: The class where character information is stored from the excel sheet
+	MainCharacter: The class where character information is stored from the excel sheet.
   
-	RandomCharacter: The class that stores random character information that several classes pull from to create random characters
+	RandomCharacter: The class that stores random character information that several classes pull from to create random characters.
   
 In the display package -
   
@@ -26,9 +26,9 @@ In the excel package -
   
 In the listeners package -
 	
-	CharacterGenerator: This class is where the data is generated and stored for the first player
+	CharacterGenerator: This class is where the data is generated and stored for the first player.
   
-	CharacterGenerator2: This class is where the data is generated and stored for the second player
+	CharacterGenerator2: This class is where the data is generated and stored for the second player.
   
 	DialogueListener: This class is what runs the story - it initializes the story and shows the respective images and text for each iteration.
   
@@ -48,7 +48,7 @@ In the mechanics package -
   
 	Counter: The DialogueListener class uses this class as an iteration counter to progress the story.
   
-	Dice: Sets the GUI for the dice roller
+	Dice: Sets the GUI for the dice roller.
   
 	EquipmentList: This class contains all the information needed for randomly generating equipment.
   
