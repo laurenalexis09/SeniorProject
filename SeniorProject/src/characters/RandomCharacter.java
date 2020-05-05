@@ -247,9 +247,9 @@ public class RandomCharacter{ //Arrays for choosing aspects of a character
 			stats[0] = s6;
 			stats[1] = s3;
 			stats[2] = s2;
-			stats[3] = s4;
-			stats[4] = s5;
-			stats[5] = s1;
+			stats[3] = s1;
+			stats[4] = s4;
+			stats[5] = s5;
 
 			return stats;
 		}

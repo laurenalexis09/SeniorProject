@@ -78,7 +78,7 @@ public class ExcelImport {
 		int value = 0;
 
 		try{  
-			File chrSht = new File("C:\\Users\\laure\\OneDrive\\Desktop\\DND\\Excel Character Sheet.xlsx");   //Locates file and imports it  
+			File chrSht = new File(""+Simulator.chr);   //Locates file and imports it  
 			FileInputStream stream = new FileInputStream(chrSht);   //obtaining bytes from the file   
 
 			wb = new XSSFWorkbook(stream); //reference to the workbook   
