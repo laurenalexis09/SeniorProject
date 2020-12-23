@@ -8,8 +8,6 @@ import javax.swing.JOptionPane;
 import characters.RandomCharacter;
 import main.Simulator;
 
-import java.io.IOException;
-
 public class CharacterGenerator2 implements ActionListener {//Class for the second random character
 	
 	private String name;
@@ -18,7 +16,7 @@ public class CharacterGenerator2 implements ActionListener {//Class for the seco
 	private int stats[] = new int[6];
 	private String background;
 
-	RandomCharacter random = new RandomCharacter(race, classType, stats, background);
+	RandomCharacter random = new RandomCharacter();
 	public CharacterGenerator2(RandomCharacter random) {
 		this.random = random;
 		race = random.getRace();

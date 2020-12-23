@@ -4,12 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+
 import characters.MainCharacter;
-import excel.ExcelImport;
 import main.Simulator;
-import mechanics.EquipmentList;
 import characters.RandomCharacter;
 
 public class MainCharacterListener implements ActionListener{
@@ -22,7 +19,7 @@ public class MainCharacterListener implements ActionListener{
 	static int[] num = new int[6];
 	static String b = null;
 	
-	static RandomCharacter gen = new RandomCharacter(race2, c, num, b);	 
+	static RandomCharacter gen = new RandomCharacter();
 	
 	public static String race = gen.getRace(); //Static so it can be used throughout the program
 	public static int str = gen.getStats()[0];

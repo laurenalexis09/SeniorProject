@@ -2,7 +2,7 @@ package characters;
 
 
 import excel.ExcelImport;
-public class MainCharacter {//Creates a main character from an excel import instance
+public class MainCharacter extends Character{//Creates a main character from an excel import instance
 
 	ExcelImport imp = new ExcelImport();
 	
