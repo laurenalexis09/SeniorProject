@@ -240,32 +240,32 @@ public class Battle1 {
 			diceChoice = DiceListener.d61 + strMod;
 		}
 
-		if(weapon == "Sickle") {
+		if(weapon.equals("Sickle")) {
 			Dice.rollButton.doClick();	
 			diceChoice = DiceListener.d41 + strMod;
 		}
 
-		if(weapon == "Spear") {
+		if(weapon.equals("Spear")) {
 			Dice.rollButton.doClick();	
 			diceChoice = DiceListener.d61 + strMod;
 		}
 
-		if(weapon == "Battleaxe") {
+		if(weapon.equals("Battleaxe")) {
 			Dice.rollButton.doClick();	
 			diceChoice = DiceListener.d81 + strMod;
 		}
 
-		if(weapon == "Flail") {
+		if(weapon.equals("Flail")) {
 			Dice.rollButton.doClick();	
 			diceChoice = DiceListener.d81 + strMod;
 		}
 
-		if(weapon == "Glaive") {
+		if(weapon.equals("Glaive")) {
 			Dice.rollButton.doClick();	
 			diceChoice = DiceListener.d1011 + strMod;
 		}
 
-		if(weapon == "Great Axe") {
+		if(weapon.equals("Great Axe")) {
 			Dice.rollButton.doClick();	
 			diceChoice = DiceListener.d121 + strMod;
 		}

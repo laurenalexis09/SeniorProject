@@ -1,8 +1,7 @@
 package mechanics;
 
-import characters.RandomCharacter;
+import characters.Character;
 import listeners.MainCharacterListener;
-import main.Simulator;
 
 public class EquipmentList { //Arrays that store all of the different possible items in game
 	String[] lArmor = {"Padded Armor","Leather Armor","Studded Leather"};
@@ -17,8 +16,6 @@ public class EquipmentList { //Arrays that store all of the different possible i
 
 	String[] shield = {"No Shield", "Shield"};
 
-	String[] size = {"Small", "Medium"};
-
 	private String armor;
 	private String melee;
 	private String ranged;
@@ -32,18 +29,18 @@ public class EquipmentList { //Arrays that store all of the different possible i
 	int[] stats;
 	String bg;
 
-	public EquipmentList() { //Generates a set list of items
+	public EquipmentList() throws Exception { //Generates a set list of items
 		race = MainCharacterListener.getRace();
-		armor = armored(armor);
-		melee = meleed(melee);
-		this.setRanged(rangeds(ranged));
-		shields = shielded(shields);
-		language2 = slanguage(race, language2);
-		sizes = sized(race, sizes);
-		weight = weighted(race, weight);
+		armor = armored();
+		melee = meleed();
+		this.setRanged(rangeds());
+		shields = shielded();
+		language2 = slanguage(race);
+		sizes = sized(race);
+		weight = weighted(race);
 	}
 
-	public String armored(String armor) { //Decides the armor
+	public String armored() { //Decides the armor
 
 		int j = (int)(Math.random()*2);
 
@@ -69,7 +66,7 @@ public class EquipmentList { //Arrays that store all of the different possible i
 
 	}
 
-	public String meleed(String melee) { //Decides the melee weapon
+	public String meleed() { //Decides the melee weapon
 
 		int j = (int)(Math.random()*1);
 
@@ -90,7 +87,7 @@ public class EquipmentList { //Arrays that store all of the different possible i
 
 	}
 
-	public String rangeds(String ranged) { //Decides the ranged weapon
+	public String rangeds() { //Decides the ranged weapon
 
 		int j = (int)(Math.random()*1);
 
@@ -111,161 +108,121 @@ public class EquipmentList { //Arrays that store all of the different possible i
 
 	}
 
-	public String shielded(String shields) { //chooses a shield
+	public String shielded() { //chooses a shield
 		int i = (int)(Math.random()*1);
 		this.setShield(shield[i]);
 		return shield[i];
 	}
 	
-	public String slanguage(String race, String language2) { //Chooses the second language
-		
+	public String slanguage(String race) { //Chooses the second language
+		String language2 = null;
 		String[] languages = {"Dwarvish", "Elvish", "Giant", "Gnoll", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal", "Auran", "Celestial", "Deep Speech", "Draconic", "Infernal", "Primordial", "Sylvan", "Undercommon", "Common"};
 
-		if(race.equals("Dragonborn")){
+		if(race.equals(Character.RACE_DRAGONBORN)){
 			language2 = "Draconic";
-			return language2;
+
 		}
 
-		if(race.equals("Dwarf")) {
+		if(race.equals(Character.RACE_DWARF)) {
 			language2 = "Dwarvish";
-			return language2;
 		}
 
-		if(race.equals("Elf")) {
+		if(race.equals(Character.RACE_ELF)) {
 			language2 = "Elvish";
-			return language2;
 		}
 
-		if(race.equals("Gnome")) {
+		if(race.equals(Character.RACE_GNOME)) {
 			language2 = "Gnomish";
-			return language2;
 		}
 
-		if(race.equals("Half-Elf")) {
+		if(race.equals(Character.RACE_HALF_ELF)) {
 			language2 = "Elvish";
-			return language2;
 		}
 
-		if(race.equals("Halfling")) {
+		if(race.equals(Character.RACE_HALFLING)) {
 			language2 = "Halfling";
-			return language2;
 		}
 
-		if(race.equals("Half-Orc")) {
+		if(race.equals(Character.RACE_HALF_ORC)) {
 			language2 = "Orc";
-			return language2;
 		}
 
-		if(race.equals("Human")) {
+		if(race.equals(Character.RACE_HUMAN)) {
 			int i = (int)(Math.random()*17);
 			language2 = languages[i];
-			return language2;
 		}
 
-		if(race.equals("Tiefling")) {
+		if(race.equals(Character.RACE_TIEFLING)) {
 			language2 = "Infernal";
-			return language2;
 		}
 		return language2;
 
 
 	}
 
-	public String sized(String race, String size) { //Chooses their size
+	public String sized(String race) throws Exception { //Chooses their size
+		String size = null;
 
-		if(race.equals("Dragonborn")){
-			size = "Medium";
-			return size;
+		switch(race) {
+			case Character.RACE_DRAGONBORN:
+			case Character.RACE_DWARF:
+			case Character.RACE_ELF:
+			case Character.RACE_HALF_ELF:
+			case Character.RACE_HALF_ORC:
+			case Character.RACE_HUMAN:
+			case Character.RACE_TIEFLING:
+				size = "Medium";
+				break;
+			case Character.RACE_GNOME:
+			case Character.RACE_HALFLING:
+				size = "Small";
 		}
-
-		if(race.equals("Dwarf")) {
-			size = "Medium";
-			return size;
-		}
-
-		if(race.equals("Elf")) {
-			size = "Medium";
-			return size;
-		}
-
-		if(race.equals("Gnome")) {
-			size = "Small";
-			return size;
-		}
-
-		if(race.equals("Half-Elf")) {
-			size = "Medium";
-			return size;
-		}
-
-		if(race.equals("Halfling")) {
-			size = "Small";
-			return size;
-		}
-
-		if(race.equals("Half-Orc")) {
-			size = "Medium";
-			return size;
-		}
-
-		if(race.equals("Human")) {
-			size = "Medium";
-			return size;
-		}
-
-		if(race.equals("Tiefling")) {
-			size = "Medium";
-			return size;
+		if ( size == null ) {
+			throw new Exception("Character race does not have an associated size");
 		}
 		return size;
 
 	}
 	
-	public int weighted(String race, int weight) { //Chooses their weight 
-
-		if(race.equals("Dragonborn")){
+	public int weighted(String race) throws Exception { //Chooses their weight
+		Integer weight = null;
+		if(race.equals(Character.RACE_DRAGONBORN)){
 			weight = 250;
-			return weight;
 		}
 
-		if(race.equals("Dwarf")) {
+		if(race.equals(Character.RACE_DWARF)) {
 			weight = 150;
-			return weight;
 		}
 
-		if(race.equals("Elf")) {
+		if(race.equals(Character.RACE_ELF)) {
 			weight = 175;
-			return weight;
 		}
 
-		if(race.equals("Gnome")) {
+		if(race.equals(Character.RACE_GNOME)) {
 			weight = 40;
-			return weight;
 		}
 
-		if(race.equals("Half-Elf")) {
+		if(race.equals(Character.RACE_HALF_ELF)) {
 			weight = 175;
-			return weight;
 		}
 
-		if(race.equals("Halfling")) {
+		if(race.equals(Character.RACE_HALFLING)) {
 			weight = 40;
-			return weight;
 		}
 
-		if(race.equals("Half-Orc")) {
+		if(race.equals(Character.RACE_HALF_ORC)) {
 			weight = 190;
-			return weight;
 		}
 
-		if(race.equals("Human")) {
+		if(race.equals(Character.RACE_HUMAN)) {
 			weight = 175;
-			return weight;
 		}
 
-		if(race.equals("Tiefling")) {
+		if(race.equals(Character.RACE_TIEFLING)) {
 			weight = 175;
-			return weight;
+		}
+		if ( weight == null ) {
+			throw new Exception("Character race does not have an associated weight");
 		}
 		return weight;
 

@@ -18,8 +18,16 @@ public class EquipmentListener implements ActionListener{
 	int[] stats;
 	String bg;
 	
-public static EquipmentList list = new EquipmentList();
-	
+public static EquipmentList list;
+
+	static {
+		try {
+			list = new EquipmentList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {//Pulls from character sheet and displays it
 		

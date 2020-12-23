@@ -1,98 +1,69 @@
 package characters;
 
-import listeners.CharacterGenerator;
+public class RandomCharacter extends Character { //Arrays for choosing aspects of a character
 
-public class RandomCharacter{ //Arrays for choosing aspects of a character
+	
 	public String race;
 	private String classType;
 	private int stats[] = new int[6];
 	private String background;
-	String raceArray[] = {"Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", "Half-Orc", "Human", "Tiefling"}; //races
-	String classArray[] = {"Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Wizard"}; //classes
+	String raceArray[] = {RACE_DRAGONBORN,RACE_DWARF, RACE_ELF, RACE_GNOME, RACE_HALF_ELF, RACE_HALFLING, RACE_HALF_ORC, RACE_HUMAN, RACE_TIEFLING}; //races
+	String classArray[] = {CLASS_BARBARIAN, CLASS_BARD, CLASS_CLERIC, CLASS_DRUID, CLASS_FIGHTER, CLASS_MONK, CLASS_PALADIN, CLASS_RANGER, CLASS_ROGUE, CLASS_SORCERER, CLASS_WIZARD}; //classes
 	String backgrounds[] = {"Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Gladiator", "Guild Artisan",
 			"Hermit", "Knight", "Noble", "Outlander", "Pirate", "Sage", "Sailor", "Soldier", "Urchin"}; //backgrounds
 
-	public RandomCharacter(String race, String classType, int[] statsClass, String background) { //Creates a random character
-		race = races(race);
-		classType = classes(classType);
+	public RandomCharacter() { //Creates a random character
+		randomizeRace();
+		randomizeClass();
 		this.setStats(statsClass(classType, getStats()));
 		this.setStats(raceMod(race, getStats()));
-		this.setBackground(back(background));
-
-		return;
+		randomizeBackground();
 	}
 
-	public String races(String race) { //chooses a race
-
+	public void randomizeRace() { //chooses a race
 		int i = (int)(Math.random()*9);
 		this.setRace(raceArray[i]);
-		return raceArray[i];
 	}
 
-	public String classes(String classType) { //chooses a class 
+	public void randomizeClass() { //chooses a class 
 		int i = (int)(Math.random()*11);
 		this.setClassType(classArray[i]);
-		return classArray[i];
 	}
 
 	public int[] raceMod(String race, int[] stats) { //Adds respective race bonuses
 
-		if(race.equals("Dragonborn")){
-			stats[0] += 2;
-			stats[5] += 1;
-			return stats;
-		}
-
-		if(race.equals("Dwarf")) {
-			stats[2] += 2;
-			return stats;
-		}
-
-		if(race.equals("Elf")) {
-			stats[1] += 2;
-			return stats;
-		}
-
-		if(race.equals("Gnome")) {
-			stats[3] += 2;
-			return stats;
-		}
-
-		if(race.equals("Half-Elf")) {
+		if(race.equals(RACE_DRAGONBORN)){
+			stats[STAT_STRENGTH] += 2;
+			stats[STAT_CHARMING] += 1;
+		} else if(race.equals(RACE_DWARF)) {
+			stats[STAT_CONSTITUTION] += 2;
+		} else if(race.equals(RACE_ELF)) {
+			stats[STAT_DEXTERITY] += 2;
+		} else if(race.equals(RACE_GNOME)) {
+			stats[STAT_INTELLIGENCE] += 2;
+		} else if(race.equals(RACE_HALF_ELF)) {
 			int i = (int)Math.random()*5+1;
 			int j = (int)Math.random()*5+1;
-			stats[5] += 2;
+			stats[STAT_CHARMING] += 2;
 			stats[i] += 1;
 			stats[j] += 1;
-			return stats;
+		} else if(race.equals(RACE_HALFLING)) {
+			stats[STAT_DEXTERITY] += 2;
+		} else if(race.equals(RACE_HALF_ORC)) {
+			stats[STAT_STRENGTH] += 2;
+			stats[STAT_CONSTITUTION] += 1;
+		} else if(race.equals(RACE_HUMAN)) {
+			stats[STAT_STRENGTH] += 1;
+			stats[STAT_DEXTERITY] += 1;
+			stats[STAT_CONSTITUTION] += 1;
+			stats[STAT_INTELLIGENCE] += 1;
+			stats[STAT_WISDOM] += 1;
+			stats[STAT_CHARMING] += 1;
+		} else if(race.equals(RACE_TIEFLING)) {
+			stats[STAT_CHARMING] += 2;
+			stats[STAT_INTELLIGENCE] += 1;
 		}
 
-		if(race.equals("Halfling")) {
-			stats[1] += 2;
-			return stats;
-		}
-
-		if(race.equals("Half-Orc")) {
-			stats[0] += 2;
-			stats[2] += 1;
-			return stats;
-		}
-
-		if(race.equals("Human")) {
-			stats[0] += 1;
-			stats[1] += 1;
-			stats[2] += 1;
-			stats[3] += 1;
-			stats[4] += 1;
-			stats[5] += 1;
-			return stats;
-		}
-
-		if(race.equals("Tiefling")) {
-			stats[5] += 2;
-			stats[3] += 1;
-			return stats;
-		}
 		return stats;
 
 
@@ -122,134 +93,134 @@ public class RandomCharacter{ //Arrays for choosing aspects of a character
 		s6 = values[5];
 
 
-		if(classType == (classArray[0])) { //Barbarian 
+		if(classType.equals(CLASS_BARBARIAN)) {
 
-			stats[0] = s1;
-			stats[1] = s3;
-			stats[2] = s2;
-			stats[3] = s5;
-			stats[4] = s6;
-			stats[5] = s4;
-
-			return stats;
-		}
-
-		if(classType == (classArray[1])) { //Bard
-
-			stats[0] = s6;
-			stats[1] = s3;
-			stats[2] = s2;
-			stats[3] = s5;
-			stats[4] = s4;
-			stats[5] = s1;
+			stats[STAT_STRENGTH] = s1;
+			stats[STAT_DEXTERITY] = s3;
+			stats[STAT_CONSTITUTION] = s2;
+			stats[STAT_INTELLIGENCE] = s5;
+			stats[STAT_WISDOM] = s6;
+			stats[STAT_CHARMING] = s4;
 
 			return stats;
 		}
 
-		if(classType == (classArray[2])) { //Cleric
+		if(classType.equals(CLASS_BARD)) {
 
-			stats[0] = s6;
-			stats[1] = s3;
-			stats[2] = s2;
-			stats[3] = s5;
-			stats[4] = s1;
-			stats[5] = s4;
-
-			return stats;
-		}
-
-		if(classType == (classArray[3])) { //Druid
-
-			stats[0] = s6;
-			stats[1] = s3;
-			stats[2] = s2;
-			stats[3] = s5;
-			stats[4] = s1;
-			stats[5] = s4;
+			stats[STAT_STRENGTH] = s6;
+			stats[STAT_DEXTERITY] = s3;
+			stats[STAT_CONSTITUTION] = s2;
+			stats[STAT_INTELLIGENCE] = s5;
+			stats[STAT_WISDOM] = s4;
+			stats[STAT_CHARMING] = s1;
 
 			return stats;
 		}
 
-		if(classType == (classArray[4])) { //Fighter
+		if(classType.equals(CLASS_CLERIC)) {
 
-			stats[0] = s1;
-			stats[1] = s3;
-			stats[2] = s2;
-			stats[3] = s6;
-			stats[4] = s5;
-			stats[5] = s4;
-
-			return stats;
-		}
-
-		if(classType == (classArray[5])) { //Monk
-
-			stats[0] = s6;
-			stats[1] = s1;
-			stats[2] = s3;
-			stats[3] = s5;
-			stats[4] = s2;
-			stats[5] = s4;
+			stats[STAT_STRENGTH] = s6;
+			stats[STAT_DEXTERITY] = s3;
+			stats[STAT_CONSTITUTION] = s2;
+			stats[STAT_INTELLIGENCE] = s5;
+			stats[STAT_WISDOM] = s1;
+			stats[STAT_CHARMING] = s4;
 
 			return stats;
 		}
 
-		if(classType == (classArray[6])) { //Paladin
+		if(classType.equals(CLASS_DRUID)) {
 
-			stats[0] = s1;
-			stats[1] = s4;
-			stats[2] = s3;
-			stats[3] = s6;
-			stats[4] = s5;
-			stats[5] = s2;
-
-			return stats;
-		}
-
-		if(classType == (classArray[7])) { //Ranger
-
-			stats[0] = s6;
-			stats[1] = s1;
-			stats[2] = s3;
-			stats[3] = s5;
-			stats[4] = s2;
-			stats[5] = s4;
+			stats[STAT_STRENGTH] = s6;
+			stats[STAT_DEXTERITY] = s3;
+			stats[STAT_CONSTITUTION] = s2;
+			stats[STAT_INTELLIGENCE] = s5;
+			stats[STAT_WISDOM] = s1;
+			stats[STAT_CHARMING] = s4;
 
 			return stats;
 		}
 
-		if(classType == (classArray[8])) { //Rogue
+		if(classType.equals(CLASS_FIGHTER)) {
 
-			stats[0] = s5;
-			stats[1] = s1;
-			stats[2] = s3;
-			stats[3] = s4;
-			stats[4] = s6;
-			stats[5] = s2;
-
-			return stats;
-		}
-
-		if(classType == (classArray[9])) { //Sorcerer
-
-			stats[0] = s6;
-			stats[1] = s3;
-			stats[2] = s2;
-			stats[3] = s4;
-			stats[4] = s5;
-			stats[5] = s1;
+			stats[STAT_STRENGTH] = s1;
+			stats[STAT_DEXTERITY] = s3;
+			stats[STAT_CONSTITUTION] = s2;
+			stats[STAT_INTELLIGENCE] = s6;
+			stats[STAT_WISDOM] = s5;
+			stats[STAT_CHARMING] = s4;
 
 			return stats;
 		}
 
-		if(classType == (classArray[10])) { //Wizard
+		if(classType.equals(CLASS_MONK)) {
 
-			stats[0] = s6;
-			stats[1] = s3;
-			stats[2] = s2;
-			stats[3] = s1;
-			stats[4] = s4;
-			stats[5] = s5;
+			stats[STAT_STRENGTH] = s6;
+			stats[STAT_DEXTERITY] = s1;
+			stats[STAT_CONSTITUTION] = s3;
+			stats[STAT_INTELLIGENCE] = s5;
+			stats[STAT_WISDOM] = s2;
+			stats[STAT_CHARMING] = s4;
+
+			return stats;
+		}
+
+		if(classType.equals(CLASS_PALADIN)) {
+
+			stats[STAT_STRENGTH] = s1;
+			stats[STAT_DEXTERITY] = s4;
+			stats[STAT_CONSTITUTION] = s3;
+			stats[STAT_INTELLIGENCE] = s6;
+			stats[STAT_WISDOM] = s5;
+			stats[STAT_CHARMING] = s2;
+
+			return stats;
+		}
+
+		if(classType.equals(CLASS_RANGER)) {
+
+			stats[STAT_STRENGTH] = s6;
+			stats[STAT_DEXTERITY] = s1;
+			stats[STAT_CONSTITUTION] = s3;
+			stats[STAT_INTELLIGENCE] = s5;
+			stats[STAT_WISDOM] = s2;
+			stats[STAT_CHARMING] = s4;
+
+			return stats;
+		}
+
+		if(classType.equals(CLASS_ROGUE)) {
+
+			stats[STAT_STRENGTH] = s5;
+			stats[STAT_DEXTERITY] = s1;
+			stats[STAT_CONSTITUTION] = s3;
+			stats[STAT_INTELLIGENCE] = s4;
+			stats[STAT_WISDOM] = s6;
+			stats[STAT_CHARMING] = s2;
+
+			return stats;
+		}
+
+		if(classType.equals(CLASS_SORCERER)) {
+
+			stats[STAT_STRENGTH] = s6;
+			stats[STAT_DEXTERITY] = s3;
+			stats[STAT_CONSTITUTION] = s2;
+			stats[STAT_INTELLIGENCE] = s4;
+			stats[STAT_WISDOM] = s5;
+			stats[STAT_CHARMING] = s1;
+
+			return stats;
+		}
+
+		if(classType.equals(CLASS_WIZARD)) {
+
+			stats[STAT_STRENGTH] = s6;
+			stats[STAT_DEXTERITY] = s3;
+			stats[STAT_CONSTITUTION] = s2;
+			stats[STAT_INTELLIGENCE] = s1;
+			stats[STAT_WISDOM] = s4;
+			stats[STAT_CHARMING] = s5;
 
 			return stats;
 		}
@@ -293,10 +264,10 @@ public class RandomCharacter{ //Arrays for choosing aspects of a character
 		return value;
 	}
 
-	public String back(String background) { //selects background
+	public void randomizeBackground() { //selects background
 
 		int i = (int)(Math.random()*16);
-		return background = backgrounds[i];
+		background = backgrounds[i];
 	}
 
 	public static void selectionSort(int[] list){

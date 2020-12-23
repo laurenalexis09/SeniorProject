@@ -7,23 +7,18 @@ import listeners.CharacterGenerator2;
 import listeners.DialogueListener;
 import listeners.EquipmentListener;
 import listeners.MainCharacterListener;
-import characters.MainCharacter;
 import characters.RandomCharacter;
-import display.JPanelWithBackground;
 
 import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.IOException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -95,14 +90,14 @@ public class Simulator extends JFrame{
 		int[] stats = null;
 		String bg = null;
 
-		RandomCharacter random = new RandomCharacter(race, classType, stats, bg);
+		RandomCharacter random = new RandomCharacter();
 
 		String race2 = null;
 		String classType2 = null;
 		int[] stats2 = null;
 		String bg2 = null;
 
-		RandomCharacter random2 = new RandomCharacter(race2, classType2, stats2, bg2);
+		RandomCharacter random2 = new RandomCharacter();
 
 		if(getOpt() == 1) { //The option pane for if the player decides to have a random character
 			names.add(new JLabel("What's your name?: "));

@@ -15,7 +15,7 @@ public class CharacterGenerator implements ActionListener { //Class for the firs
 	private int stats[] = new int[6];
 	private String background;
 	
-	RandomCharacter random = new RandomCharacter(race, classType, stats, background);
+	RandomCharacter random = new RandomCharacter();
 	public CharacterGenerator(RandomCharacter random) {
 		this.random = random;
 		race = random.getRace();
